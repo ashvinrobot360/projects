@@ -1,0 +1,17 @@
+[global]
+direct=1
+iodepth=22
+ioengine=libaio
+runtime=10
+time_based=1
+ramp_time=5
+size=5g
+numjobs=1
+rw=rw
+bs=8k
+rwmixread=90
+rwmixwrite=10
+
+[rw_bw_test]
+name=rw_bw_test
+filename=/mnt/VBOX_HARDDISK_ext4/test.dat
