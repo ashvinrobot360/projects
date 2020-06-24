@@ -1,0 +1,11 @@
+[masters]
+master ansible_host=ashvin-dev ansible_user=root
+
+[workers]
+worker1 ansible_host=knode1 ansible_user=root
+worker1 ansible_host=knode2 ansible_user=root
+worker1 ansible_host=knode3 ansible_user=root
+worker1 ansible_host=knode4 ansible_user=root
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3

@@ -1,0 +1,7 @@
+apt install freeipmi-tools
+ipmitool -H 10.80.0.12 -U ADMIN -P ADMIN chassis power <status|on|off|cycle|reset>
+ipmitool -H 10.80.0.12 -U ADMIN -P ADMIN chassis power status
+
+
+apt-get install vncviewer
+

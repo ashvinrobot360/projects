@@ -1,0 +1,16 @@
+ashvin@ashvin-dev:~/projects/kubernetes$ minikube start
+😄  minikube v1.9.2 on Ubuntu 16.04
+✨  Automatically selected the docker driver
+👍  Starting control plane node m01 in cluster minikube
+🚜  Pulling base image ...
+💾  Downloading Kubernetes v1.18.0 preload ...
+    > preloaded-images-k8s-v2-v1.18.0-docker-overlay2-amd64.tar.lz4: 542.91 MiB
+🔥  Creating Kubernetes in docker container with (CPUs=2) (4 available), Memory=2200MB (3951MB available) ...
+🐳  Preparing Kubernetes v1.18.0 on Docker 19.03.2 ...
+    ▪ kubeadm.pod-network-cidr=10.244.0.0/16
+🌟  Enabling addons: default-storageclass, storage-provisioner
+🏄  Done! kubectl is now configured to use "minikube"
+ashvin@ashvin-dev:~/projects/kubernetes$ 
+
+
+

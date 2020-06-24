@@ -1,0 +1,69 @@
+* how many VMs
+    8 VMs
+
+* Find how much physical memory
+    cat /proc/meminfo  (64GB)
+    - 6GB per VM   
+
+* Find how many CPU cores
+    cat /proc/cpuinfo  | grep processor
+    - 2 vCPUs per VM
+
+* Spread the VM disk images across physical drives, find drives and mount them
+    lssci (4 VMs share 1 disk)
+    /dev/sdb on /mnt/vmimages1 type xfs (rw,relatime,attr2,inode64,noquota)
+    /dev/sdc on /mnt/vmimages2 type xfs (rw,relatime,attr2,inode64,noquota)
+   (mount using uuid of disk instead of device file)
+    first drive - 19bd8d97-6ca8-4dfc-99d7-07dbdfdc1ad2
+    second drive - 274a5c40-6944-44b9-ac46-0476318263e9
+    find uuid using command 'blkid' command
+    /dev/disk/by-uuid/19bd8d97-6ca8-4dfc-99d7-07dbdfdc1ad2  /mnt/vmimages1 xfs defaults 0   0
+    /dev/disk/by-uuid/274a5c40-6944-44b9-ac46-0476318263e9 /mnt/vmimages2 xfs defaults 0    0
+
+* number of virtual disks per VM
+   - 1 64GB is good enough
+
+* create virtual disk for 1st vm
+   - qemu-img create -f raw vmdisk1.img 64G
+   - qemu-img create -f qcow2 knode1.qcow2 64g  (prefer this format)
+
+* create network bridge for network interfaces on guest (choose enp2s0f1)
+
+-------- assuming not using netplan --------
+root@lab-load2:~# cat /etc/network/interfaces
+# ifupdown has been replaced by netplan(5) on this system.  See
+# /etc/netplan for current configuration.
+# To re-enable ifupdown on this system, you can run:
+#    sudo apt install ifupdown
+#
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+auto enp2s0f0
+iface enp2s0f0 inet dhcp
+
+auto enp2s0f1
+iface enp2s0f1 inet manual
+
+auto kube-br0
+iface kube-br0 inet dhcp
+    bridge_ports enp2s0f1
+root@lab-load2:~# 
+-------- assuming not using netplan --------
+
+
+
+* or use internet base install
+* To do text based installation, mount install ISO to folder as below
+
+mkdir /mnt/ubuntu1804
+root@lab-load2:~# mount /root/kvm/ubuntu-18.04.4-live-server-amd64.iso  /mnt/ubuntu1804/mount: /mnt/ubuntu1804: WARNING: device write-protected, mounted read-only.
+root@lab-load2:~# ls /mnt/ubuntu1804/
+boot    dists  install   md5sum.txt  pool     README.diskdefines
+casper  EFI    isolinux  pics        preseed  ubuntu
+root@lab-load2:~# 
+
+
