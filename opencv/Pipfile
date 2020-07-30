@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+cmake = "*"
+dlib = "*"
+opencv-python = "==4.2.0.34"
+matplotlib = "*"
+pyzbar = "*"
+pytesseract = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
